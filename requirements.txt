@@ -1,0 +1,38 @@
+# ============================================================
+# File: .env.example
+# Project: E-commerce User Behavior Data Platform
+# Instructions: Copy this file to .env and provide your local 
+#               credentials. NEVER commit the .env file to VCS.
+# ============================================================
+
+# MySQL Database Configuration
+# ----------------------------
+# The host address for the MySQL instance (e.g., localhost or service name)
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=root
+MYSQL_PASSWORD=your_mysql_password_here
+# Target database for the E-commerce Data Warehouse
+MYSQL_DATABASE=ecommerce_dw
+
+# Airflow Configuration
+# ---------------------
+# Fixed UID for Airflow to avoid permission issues in Docker
+AIRFLOW_UID=50000
+# Key used for encrypting connection passwords in the Metadata DB
+AIRFLOW__CORE__FERNET_KEY=your_fernet_key_here
+# Generate using: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+
+# PySpark Configuration
+# ---------------------
+# Allocated memory for the Spark driver process
+SPARK_DRIVER_MEMORY=2g
+# Default number of partitions to use when shuffling data for joins or aggregations
+SPARK_SHUFFLE_PARTITIONS=4
+
+# Data Paths (Internal Docker Container Paths)
+# --------------------------------------------
+# Source path for raw data ingestion
+RAW_DATA_PATH=/opt/airflow/data/raw
+# Destination path for processed output/staging files
+OUTPUT_PATH=/opt/airflow/output
